@@ -30,6 +30,8 @@ ALLOWED_HOSTS = [
     config('ALLOWED_HOSTS', default='localhost', cast=str),
 ]
 
+AUTH_USER_MODEL = 'users.User'
+
 
 # Application definition
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "debug_toolbar",
+    'users'
 ]
 
 MIDDLEWARE = [
