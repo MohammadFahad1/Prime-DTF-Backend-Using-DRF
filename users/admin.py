@@ -1,12 +1,13 @@
 from django.contrib import admin
-from .models import User
+from django.contrib.auth.admin import UserAdmin
+from .models import User, Messages
 
 # Register your models here.
 admin.site.site_header = "PrimeDTF Admin"
 admin.site.site_title = "PrimeDTF Admin Portal"
 admin.site.index_title = "Welcome to PrimeDTF Portal"
 
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'address', 'is_staff', 'is_active', 'date_joined')
     search_fields = ('username', 'email', 'first_name', 'last_name')
     list_filter = ('is_staff', 'is_active', 'date_joined')
@@ -17,5 +18,14 @@ class UserAdmin(admin.ModelAdmin):
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),
     )
-
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'message')
+    search_fields = ('name', 'email', 'subject')
+    list_filter = ('name', 'email')
+    ordering = ('-id',)
+    fieldsets = (
+        (None, {'fields': ('name', 'email', 'subject', 'message')}),
+    )
 admin.site.register(User, UserAdmin)
+admin.site.register(Messages, MessageAdmin)
+# Register your models here.
