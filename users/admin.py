@@ -26,6 +26,7 @@ class MessageAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('name', 'email', 'subject', 'message')}),
     )
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Messages, MessageAdmin)
 # Register your models here.
