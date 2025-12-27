@@ -34,6 +34,12 @@ ALLOWED_HOSTS = [
     '.vercel.app',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://www.primedtfbd.com/",
+    "https://primedtfbd.com/",
+]
+
 AUTH_USER_MODEL = 'users.User'
 
 
@@ -48,6 +54,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    "corsheaders",
     'rest_framework',
     'djoser',
     "debug_toolbar",
@@ -57,6 +64,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
