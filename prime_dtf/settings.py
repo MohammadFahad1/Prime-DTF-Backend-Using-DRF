@@ -29,7 +29,9 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = [
-    config('ALLOWED_HOSTS', default='localhost', cast=str),
+    'localhost',
+    '127.0.0.1',
+    '.vercel.app',
 ]
 
 AUTH_USER_MODEL = 'users.User'
