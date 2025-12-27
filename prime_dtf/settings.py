@@ -34,11 +34,7 @@ ALLOWED_HOSTS = [
     '.vercel.app',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://www.primedtfbd.com/",
-    "https://primedtfbd.com/",
-]
+
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -192,3 +188,8 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("JWT",),
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://www.primedtfbd.com/",
+    "https://primedtfbd.com/",
+]
