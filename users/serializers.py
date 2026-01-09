@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from users.models import Messages
 from django.contrib.auth import get_user_model
-from users.models import TopHeader1, TopHeader2
+from users.models import TopHeader1, TopHeader2, HeroSectionButton
 
 User = get_user_model()
 
@@ -35,3 +35,10 @@ class TopHeader2Serializer(serializers.ModelSerializer):
     class Meta:
         model = TopHeader2
         fields = ['id', 'message']
+
+class HeroSectionButtonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HeroSectionButton
+        fields = ['id', 'button_text', 'button_link']
+        extra_kwargs = {'button_text': {'required': True},
+                        'button_link': {'required': True}}

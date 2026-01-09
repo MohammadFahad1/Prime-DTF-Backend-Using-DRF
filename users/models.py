@@ -13,6 +13,13 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+class About(models.Model):
+    location = models.CharField(max_length=255)
+    phone = models.CharField(max_length=15)
+    whatsapp = models.CharField(max_length=15)
+    email = models.EmailField()
+    about_text = models.TextField()
+
 class Messages(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
@@ -33,3 +40,10 @@ class TopHeader2(models.Model):
 
     def __str__(self):
         return self.message
+
+class HeroSectionButton(models.Model):
+    button_text = models.CharField(max_length=100)
+    button_link = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.button_text
