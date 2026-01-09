@@ -190,6 +190,7 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://www.primedtfbd.com/",
-    "https://primedtfbd.com/",
+    "http://127.0.0.1:8000",
+    "https://www.primedtfbd.com",
+    "https://primedtfbd.com",
 ]

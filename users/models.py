@@ -21,3 +21,15 @@ class Messages(models.Model):
 
     def __str__(self):
         return self.name + " " + self.subject
+
+class TopHeader1(models.Model):
+    message = models.CharField(max_length=350)
+
+    def __str__(self):
+        return self.message
+
+class TopHeader2(models.Model):
+    message = models.CharField(max_length=350)
+
+    def __str__(self):
+        return self.message

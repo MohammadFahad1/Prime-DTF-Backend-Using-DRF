@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from users.models import Messages
 from django.contrib.auth import get_user_model
+from users.models import TopHeader1, TopHeader2
 
 User = get_user_model()
 
@@ -24,3 +25,13 @@ class MessageSerializer(serializers.ModelSerializer):
                         'email': {'required': True},
                         'subject': {'required': True},
                         'message': {'required': True}} 
+
+class TopHeader1Serializer(serializers.ModelSerializer):    
+    class Meta:
+        model = TopHeader1
+        fields = ['id', 'message']
+
+class TopHeader2Serializer(serializers.ModelSerializer):    
+    class Meta:
+        model = TopHeader2
+        fields = ['id', 'message']
