@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from users.models import Messages
 from django.contrib.auth import get_user_model
-from users.models import TopHeader1, TopHeader2, HeroSectionButton
+from users.models import TopHeader1, TopHeader2, HeroSectionButton, GoogleMapReview, GoogleMapReviewPhoto
 
 User = get_user_model()
 
@@ -42,3 +42,16 @@ class HeroSectionButtonSerializer(serializers.ModelSerializer):
         fields = ['id', 'button_text', 'button_link']
         extra_kwargs = {'button_text': {'required': True},
                         'button_link': {'required': True}}
+
+class GoogleMapReviewPhotoSerializer(serializers.ModelSerializer):
+    photo = serializers.ImageField(use_url=True)
+    class Meta:
+        model = GoogleMapReviewPhoto
+        fields = ['id', 'photo']
+
+class GoogleMapReviewSerializer(serializers.ModelSerializer):
+    profileImage = serializers.ImageField(use_url=True)
+    photos = GoogleMapReviewPhotoSerializer(many=True, read_only=True)
+    class Meta:
+        model = GoogleMapReview
+        fields = ['id', 'profileImage', 'name', 'time', 'rating', 'review', 'photos']

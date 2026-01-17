@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Messages, TopHeader1, TopHeader2, HeroSectionButton
+from .models import User, Messages, TopHeader1, TopHeader2, HeroSectionButton, GoogleMapReview, GoogleMapReviewPhoto
 
 # Register your models here.
 admin.site.site_header = "PrimeDTF Admin"
@@ -27,6 +27,8 @@ class MessageAdmin(admin.ModelAdmin):
         (None, {'fields': ('name', 'email', 'subject', 'message')}),
     )
 
+admin.site.register(GoogleMapReview)
+admin.site.register(GoogleMapReviewPhoto)
 admin.site.register(HeroSectionButton)
 admin.site.register(User, UserAdmin)
 admin.site.register(Messages, MessageAdmin)

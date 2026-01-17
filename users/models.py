@@ -1,6 +1,8 @@
+from unicodedata import name
 from cloudinary.models import CloudinaryField
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 # Create your models here.
 class User(AbstractUser):
@@ -47,3 +49,20 @@ class HeroSectionButton(models.Model):
 
     def __str__(self):
         return self.button_text
+    
+class GoogleMapReview(models.Model):
+    profileImage = CloudinaryField('review_profile_images/')
+    name = models.CharField(max_length=255)
+    time = models.DateTimeField(default=timezone.now)
+    rating = models.IntegerField()
+    review = models.TextField()
+
+    def __str__(self):
+        return self.name + " - " + str(self.rating) + " stars"
+
+class GoogleMapReviewPhoto(models.Model):
+    review = models.ForeignKey(GoogleMapReview, on_delete=models.CASCADE, related_name='photos')
+    photo = CloudinaryField('review_photos/')
+
+    def __str__(self):
+        return f"Photo for review by {self.review.name}"
