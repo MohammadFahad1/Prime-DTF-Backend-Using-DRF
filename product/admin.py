@@ -1,5 +1,5 @@
 from django.contrib import admin
-from product.models import ReadyToPress, CustomDesign, CustomDesignPhoto
+from product.models import ReadyToPress, CustomDesign, CustomDesignPhoto, ProductType, Product, ProductColor, ProductImage
 
 
 # Register your models here.
@@ -9,6 +9,10 @@ class ReadyToPressAdmin(admin.ModelAdmin):
     list_filter = ('title', 'description')
     ordering = ('-id',)
 
+admin.site.register(ReadyToPress, ReadyToPressAdmin)
 admin.site.register(CustomDesign)
 admin.site.register(CustomDesignPhoto)
-admin.site.register(ReadyToPress, ReadyToPressAdmin)
+admin.site.register(ProductType)
+admin.site.register(Product)
+admin.site.register(ProductColor)
+admin.site.register(ProductImage)
