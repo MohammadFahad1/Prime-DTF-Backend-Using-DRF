@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from users.models import Messages
 from django.contrib.auth import get_user_model
-from users.models import TopHeader1, TopHeader2, HeroSectionButton, GoogleMapReview, GoogleMapReviewPhoto
+from users.models import TopHeader1, TopHeader2, HeroSectionButton, GoogleMapReview, GoogleMapReviewPhoto, PartnerBrand
 
 User = get_user_model()
 
@@ -55,3 +55,11 @@ class GoogleMapReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = GoogleMapReview
         fields = ['id', 'profileImage', 'name', 'time', 'rating', 'review', 'photos']
+
+class PartnerBrandSerializer(serializers.ModelSerializer):
+    logo = serializers.ImageField(use_url=True)
+    class Meta:
+        model = PartnerBrand
+        fields = ['id', 'logo', 'name']
+        extra_kwargs = {'logo': {'required': True},
+                        'name': {'required': True}}

@@ -66,3 +66,10 @@ class GoogleMapReviewPhoto(models.Model):
 
     def __str__(self):
         return f"Photo for review by {self.review.name}"
+
+class PartnerBrand(models.Model):
+    name = models.CharField(max_length=255)
+    logo = CloudinaryField('partner_logos/')
+
+    def __str__(self):
+        return self.name

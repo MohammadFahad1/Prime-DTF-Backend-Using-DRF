@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from .serializers import MessageSerializer
 from rest_framework.viewsets import ModelViewSet
-from users.models import TopHeader1, TopHeader2, HeroSectionButton, GoogleMapReview
-from users.serializers import TopHeader1Serializer, TopHeader2Serializer, HeroSectionButtonSerializer, GoogleMapReviewSerializer
+from users.models import TopHeader1, TopHeader2, HeroSectionButton, GoogleMapReview, PartnerBrand
+from users.serializers import TopHeader1Serializer, TopHeader2Serializer, HeroSectionButtonSerializer, GoogleMapReviewSerializer, PartnerBrandSerializer
 
 # Create your views here.
 class CreateMessageView(generics.CreateAPIView):
@@ -25,3 +25,8 @@ class GoogleMapReviewViewSet(generics.ListAPIView):
     http_method_names = ['get']
     queryset = GoogleMapReview.objects.all()
     serializer_class = GoogleMapReviewSerializer
+
+class ParnerBrandViewSet(generics.ListAPIView):
+    http_method_names = ['get']
+    queryset = PartnerBrand.objects.all()
+    serializer_class =  PartnerBrandSerializer
