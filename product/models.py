@@ -7,11 +7,11 @@ class ReadyToPress(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()    
     image = CloudinaryField('product_images/')
-    smprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    mdprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    lgprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    xlprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    xxlprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
+    smprice = models.DecimalField(max_digits=10, decimal_places=2)
+    mdprice = models.DecimalField(max_digits=10, decimal_places=2)
+    lgprice = models.DecimalField(max_digits=10, decimal_places=2)
+    xlprice = models.DecimalField(max_digits=10, decimal_places=2)
+    xxlprice = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -20,7 +20,7 @@ class ReadyToPress(models.Model):
 
 class CustomDesign(models.Model):
     title = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     def __str__(self):
         return f"{self.title} - {self.price}"
 
@@ -42,12 +42,12 @@ class ProductType(models.Model):
 class Product(models.Model):
     product_type = models.ForeignKey(ProductType, related_name='products', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    smprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    mdprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    lgprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    xlprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    xxlprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
-    xxxlprice = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
+    smprice = models.DecimalField(max_digits=10, decimal_places=2)
+    mdprice = models.DecimalField(max_digits=10, decimal_places=2)
+    lgprice = models.DecimalField(max_digits=10, decimal_places=2)
+    xlprice = models.DecimalField(max_digits=10, decimal_places=2)
+    xxlprice = models.DecimalField(max_digits=10, decimal_places=2)
+    xxxlprice = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -63,10 +63,10 @@ class ProductColor(models.Model):
         return f"{self.product.title} - {self.color_name}"
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    product_color = models.ForeignKey(ProductColor, related_name='images', on_delete=models.CASCADE)
     image = CloudinaryField('product_images/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.product.title} Image"
+        return f"{self.product_color.product.title} Image"

@@ -19,4 +19,4 @@ class ProductViewSet(ListAPIView):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        return Product.objects.select_related('product_type').prefetch_related('colors', 'images').filter(product_type__name=self.request.query_params.get('product_type'))
+        return Product.objects.select_related('product_type').prefetch_related('colors').filter(product_type__name=self.request.query_params.get('product_type'))

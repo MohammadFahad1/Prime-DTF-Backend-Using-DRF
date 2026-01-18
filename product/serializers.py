@@ -26,23 +26,23 @@ class ProductTypeSerializer(serializers.ModelSerializer):
         model = ProductType
         fields = ['id', 'name']
 
-class ProductColorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProductColor
-        fields = ['id', 'color_name', 'color_code_hex']
-
 class ProductImageSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(use_url=True)
     class Meta:
         model = ProductImage
         fields = ['id', 'image']
 
+class ProductColorSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True, read_only=True)
+    class Meta:
+        model = ProductColor
+        fields = ['id', 'color_name', 'color_code_hex', 'images']
+
 class ProductSerializer(serializers.ModelSerializer):
     colors = ProductColorSerializer(many=True, read_only=True)
-    images = ProductImageSerializer(many=True, read_only=True)
     product_type = ProductTypeSerializer(read_only=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'product_type', 'title', 'smprice', 'mdprice', 'lgprice', 'xlprice', 'xxlprice', 'xxxlprice', 'colors', 'images', 'created_at', 'updated_at']
+        fields = ['id', 'product_type', 'title', 'smprice', 'mdprice', 'lgprice', 'xlprice', 'xxlprice', 'xxxlprice', 'colors', 'created_at', 'updated_at']
         read_only_fields = ['created_at', 'updated_at']
